@@ -91,6 +91,8 @@ describe Orocos::RubyTasks::TaskContext do
 
     it "allows to handle the normal state changes" do
         task = new_ruby_task_context('task')
+        assert_equal :PRE_OPERATIONAL, task.rtt_state
+        task.configure
         assert_equal :STOPPED, task.rtt_state
         task.start
         assert_equal :RUNNING, task.rtt_state

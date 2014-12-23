@@ -183,7 +183,7 @@ describe Orocos::Async::CORBA::TaskContext do
             end
 
             Orocos::Async.steps
-            assert_equal ["dynamic_prop","prop1", "prop2", "prop3"],properties
+            assert_equal ["dynamic_prop","dynamic_prop_setter_called","prop1", "prop2", "prop3"],properties
         end
 
         it "should call on_port_reachable if a port was dynamically added" do 
