@@ -4,6 +4,7 @@ require './lib/orocos/version'
 begin
     require 'hoe'
     Hoe::plugin :yard
+    Hoe::RUBY_FLAGS.gsub!(/-w/, '')
 
     hoe_spec = Hoe.spec('orocos.rb') do |p|
         self.developer("Sylvain Joyeux", "sylvain.joyeux@dfki.de")
