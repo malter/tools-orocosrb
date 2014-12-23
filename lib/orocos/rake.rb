@@ -72,7 +72,7 @@ module Orocos
 
             if !system 'cmake', "-DCMAKE_INSTALL_PREFIX=#{prefix}", "-DCMAKE_BUILD_TYPE=Debug", "..", chdir: build_dir
                 raise "failed to configure"
-            elsif !system "make", "install", *make_options, chdir: build_dir
+            elsif !system "make", "install", *make_options, redirect_options.merge(chdir: build_dir)
                 raise "failed to install"
             end
             ENV['PKG_CONFIG_PATH'] += ":#{prefix}/lib/pkgconfig"
