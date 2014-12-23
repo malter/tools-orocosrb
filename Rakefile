@@ -24,6 +24,7 @@ begin
     end
 
     hoe_spec.spec.extensions = FileList["ext/**/extconf.rb"]
+    hoe_spec.test_globs = ['test/suite.rb']
 
     def build_orogen(name, options = Hash.new)
         require './lib/orocos/rake'
