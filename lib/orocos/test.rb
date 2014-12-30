@@ -211,9 +211,6 @@ if defined?(FlexMock) && !FlexMock::TestUnitFrameworkAdapter.method_defined?(:as
 end
 
 module Minitest
-    class Spec
-        include Orocos::SelfTest
-    end
     class Test
         include Orocos::SelfTest
     end
