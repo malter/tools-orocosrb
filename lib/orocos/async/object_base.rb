@@ -332,7 +332,7 @@ module Orocos::Async
         # calls all listener which are registered for the given event
         # the next step
         def event(event_name,*args)
-            event = validate_event event_name
+            validate_event event_name
             return unless @emitting
             @event_loop.once do
                 process_event event_name,*args
