@@ -1,9 +1,12 @@
 require 'orocos'
+require 'orocos/test/ruby_tasks'
 require 'utilrb/module/include'
 
 module Orocos
     module Test
         module Component
+            include Test::RubyTasks
+
             attribute(:processes)  { Array.new }
             attribute(:data_readers)  { Array.new }
             attribute(:data_writers) { Array.new }

@@ -44,10 +44,12 @@ end
 require 'orocos'
 require 'orocos/rake'
 require 'orocos/test/mocks'
+require 'orocos/test/ruby_tasks'
 
 module Orocos
     module SelfTest
         include Test::Mocks
+        include Test::RubyTasks
 
         # A set of "modes" that can be used to control how the tests will be
         # performed
@@ -93,7 +95,6 @@ module Orocos
             end
 
             @processes = Array.new
-            @allocated_task_contexts = Array.new
 
             Orocos.initialize
             @__orocos_corba_timeouts = [Orocos::CORBA.call_timeout, Orocos::CORBA.connect_timeout]
@@ -120,7 +121,6 @@ module Orocos
                 end
             end
             processes.clear
-            @allocated_task_contexts.each(&:dispose)
             super
             if @__orocos_corba_timeouts # can be nil if setup failed
                 Orocos::CORBA.call_timeout, Orocos::CORBA.connect_timeout = *@__orocos_corba_timeouts
@@ -182,12 +182,6 @@ module Orocos
                 sleep 0.01
             end
             flunk("#{task} was expected to be in state #{state} but is in #{task.state}")
-        end
-
-        def new_ruby_task_context(name, options = Hash.new, &block)
-            task = Orocos::RubyTasks::TaskContext.new(name, options, &block)
-            @allocated_task_contexts << task
-            task
         end
 
         def wait_for(timeout = 5, &block)
