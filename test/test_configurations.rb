@@ -486,7 +486,7 @@ describe Orocos::TaskConfigurations do
         it "should ignore entries whose model cannot be found" do
             FileUtils.mkdir_p "/conf"
             File.open("/conf/entry.yml", 'w').close
-            conf.should_receive(:load_file).with("/conf/entry.yml").and_raise(Orocos::NotFound)
+            conf.should_receive(:load_file).with("/conf/entry.yml").and_raise(OroGen::TaskModelNotFound)
             # Should not raise
             conf.load_dir "/conf"
         end
