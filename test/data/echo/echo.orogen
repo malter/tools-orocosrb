@@ -5,7 +5,7 @@ import_types_from "echo.h"
 typekit do
     type_export_policy :used
     opaque_type '/OpaquePoint', 'echo/Point',
-            :includes => [File.expand_path('opaques.h', File.dirname(component.deffile))]
+            :includes => [File.expand_path('opaques.h', File.dirname(project.deffile))]
 end
 import_types_from File.expand_path('opaques.h', File.dirname(deffile))
 
