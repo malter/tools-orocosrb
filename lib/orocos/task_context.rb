@@ -380,6 +380,7 @@ module Orocos
                 begin
                     do_has_port?(name)
                 rescue Orocos::NotFound
+                rescue Orocos::CORBAError
                     false
                 end
             end
